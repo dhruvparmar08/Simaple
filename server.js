@@ -31,7 +31,7 @@ conn.on('disconnected', function(){
 conn.on('error', console.error.bind(console, 'connection error:'));
 
 app.get('/', (req,res) => {
-    res.send("Hello");
+    res.sendFile('./public/index.html');
 })
 
 
