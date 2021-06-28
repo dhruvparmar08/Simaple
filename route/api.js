@@ -18,8 +18,9 @@ module.exports = function(router){
                     res.json({ success: false, message: 'Profile Image not upload !!!'});
                 }
             } else {
+                console.log(req.file);
                 if(!req.file) {
-                    res.json({ success: false, message: 'no file selected !!!'});
+                    res.json({ success: false, message: 'No file selected !!!'});
                 } else{
                     let user = new User();
 
@@ -31,7 +32,18 @@ module.exports = function(router){
                     user.profile_file = req.file.filename;
                     user.save(function(err){
                         if(err){
-                            console.log(err);
+                            console.log(err.errors.name);
+                            if(err.errors.name) {
+                                res.json({ success: false, message: "Name is required" });    
+                            } else if(err.errors.email) {
+                                res.json({ success: false, message: "E-mail is required" });    
+                            } else if(err.errors.mobile) {
+                                res.json({ success: false, message: "Mobile is required" });    
+                            } else if(err.errors.password) {
+                                res.json({ success: false, message: "Password is required" });    
+                            } else {
+                                res.json({ success: false, message: err });
+                            }
                         } else {
                             res.json({ success: true, message: 'Registration Successfully' });
                         }

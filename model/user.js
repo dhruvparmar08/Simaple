@@ -9,7 +9,7 @@ var UserSchema = new Schema({
     email : { type: String, required: true, lowercase:true },
     mobile : { type: String, required: true },
     password : { type: String, required: true, select: false },
-    address : { type: String, },
+    address : { type: String },
     profile_file: { type: String, required: true}
 });
 
