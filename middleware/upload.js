@@ -18,8 +18,7 @@ var storage = multer.diskStorage({
 
 
 var upload = multer({
-    storage:storage,
-    limits: { fileSize: 1024 * 1024 * 2}
+    storage:storage
 }).single('profile_file');
 
 // var upload = multer({

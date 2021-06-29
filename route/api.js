@@ -30,6 +30,7 @@ module.exports = function(router){
                     user.password = req.body.password;
                     user.address = req.body.address;
                     user.profile_file = req.file.filename;
+                    user.profile_path = req.file.path;
                     user.save(function(err){
                         if(err){
                             console.log(err.errors.name);
@@ -48,11 +49,21 @@ module.exports = function(router){
                             res.json({ success: true, message: 'Registration Successfully' });
                         }
                     });
-                    console.log(JSON.stringify(req.file.filename));
                 }
             }
         })
     
+    })
+
+    router.get('/users', (req, res) => {
+        User.find({}).exec(function(err, user) {
+            if(err) throw err;
+            if(!user) {
+                res.json({ success: fale, message: 'User not found' });
+            } else {
+                res.json({ success: true, message: 'get details Successfully', data: user });
+            }
+        })
     })
 
 

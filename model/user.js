@@ -10,7 +10,8 @@ var UserSchema = new Schema({
     mobile : { type: String, required: true },
     password : { type: String, required: true, select: false },
     address : { type: String },
-    profile_file: { type: String, required: true}
+    profile_file: { type: String, required: true},
+    profile_path: { type: String }
 });
 
 UserSchema.pre('save', function(next) {
