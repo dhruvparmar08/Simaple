@@ -36,39 +36,4 @@ conn.on('disconnected', function(){
 });
 conn.on('error', console.error.bind(console, 'connection error:'));
 
-app.get('/', (req,res) => {
-    res.sendFile('./public/index.html');
-})
-
-
-// app.post('/profile', function (req, res) {
-
-//     upload(req, res, function(err) {
-//         if(err) {
-//             if( err.code === 'LIMIT_FILE_SIZE'){
-//                 res.json({ success: false, message: 'Profile Image too large !!!'});
-//             } else if( err.code === 'filetype' ) {
-//                 res.json({ success: false, message: 'Invaild : Only jpeg, jpg and png supported !!!'});
-//             } else {
-//                 console.log(err);
-//                 res.json({ success: false, message: 'Profile Image not upload !!!'});
-//             }
-//         } else {
-//             if(!req.file) {
-//                 res.json({ success: false, message: 'no file selected !!!'});
-//             } else{
-//                 // user.livingroom = req.file.filename;
-//                 // user.save(function(err){
-//                 //     if(err){
-//                 //         console.log(err);
-//                 //     }
-//                 // });
-                
-//                 console.log(JSON.stringify(req.file.path))
-//                 res.json({ success: true, message: 'Profile Image Uploaded Successfully' });
-//             }
-//         }
-//     })
-// })
-
 app.listen(port, ()=> console.log("connected with", port));
