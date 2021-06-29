@@ -18,7 +18,6 @@ module.exports = function(router){
                     res.json({ success: false, message: 'Profile Image not upload !!!'});
                 }
             } else {
-                console.log(req.file);
                 if(!req.file) {
                     res.json({ success: false, message: 'No file selected !!!'});
                 } else{

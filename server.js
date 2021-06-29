@@ -2,9 +2,6 @@ const express = require('express');
 const app = express();
 const port = process.env.port || 8080;
 const morgan = require('morgan');
-const multer  = require('multer');
-const upload = require("./middleware/upload");
-const path = require("path");
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 const user = require('./model/user');
@@ -20,8 +17,8 @@ app.use(cors(corsOptions))
 
 app.use('/uploads',express.static('uploads'));
 app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api',appRoutes);
 
 mongoose.connect('mongodb+srv://mongodbuser:mongodbuser@cluster0-mvmyh.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true,  useCreateIndex: true, useUnifiedTopology: true });
@@ -36,4 +33,6 @@ conn.on('disconnected', function(){
 });
 conn.on('error', console.error.bind(console, 'connection error:'));
 
-app.listen(port, ()=> console.log("connected with", port));
+app.listen(port, function(){
+    console.log("connected "+port);
+});
